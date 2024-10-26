@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquête</title>
+    <script src="assets/js/d3.v7.min.js"></script>
+    <script src="assets/js/bootstrap5.3.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/handsontable.full.min.js"></script>
+    <script src="assets/js/video.min.js"></script>
+    <script src="assets/js/howler.min.js"></script>    
+    <script src="https://kit.fontawesome.com/41992aa5bc.js" crossorigin="anonymous"></script>
+    <script src="assets/js/lame.min.js"></script>        
+
+    <link href="assets/css/bootstrap5.3.min.css" rel="stylesheet">
+    <link href="assets/css/menu.css" rel="stylesheet">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/handsontable.full.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/video-js.min.css" rel="stylesheet">
+    <link href="assets/css/recorder.css" rel="stylesheet">
+
+
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+
+        <header>
+            <div>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-bottom-dark"
+                    data-bs-theme="dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="assets/img/logo-paragraphe-blanc.svg" alt="Logo" width="86"
+                                class="d-inline-block align-text-top">
+                                Enquête
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-light fa-calendar"></i>
+                                    <span>Choisir une enquête</span>
+                                </a>
+                                <ul id="ddEnquete" class="dropdown-menu">
+                                </ul>
+                              </li>
+                              <li class="nav-item">
+                                <button id="btnAddEnquete" class="btn btn-outline-danger me-2" type="button"><i class="fa-light fa-calendar-plus"></i></button>
+                                </li>
+                            </ul>
+                            <ul id="navbarConnect" class="navbar-nav me-auto">
+                            </ul>
+                        </div>                        
+                    </div>
+                </nav>
+
+            </div>
+        </header>
+
+
+        <main id='mainContent'>
+
+            <div class="container-fluid text-center">
+                <div class="row my-2">
+                    <div class="col-4 border-end border-secondary" >
+                        <div class="row px-2" id="contentParams">
+                        </div>
+                        <div class="row" id="contentMap">
+                        </div>
+                    </div>
+                    <div class="col-8 border-start border-secondary">
+                        <div id="formEnquete" class="visible">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choisir un enquêteur</button>
+                                        <ul id="lstEnqueteurs" class="dropdown-menu dropdown-menu-dark"
+                                            style="overflow-y: scroll;height: 200px;">
+                                        </ul>
+                                        <input id="sltEnqueteur" type="text" class="form-control" aria-label="">
+                                    </div>
+                                        </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choisir un interlocuteur</button>
+                                        <ul id="lstInterlocuteurs" class="dropdown-menu  dropdown-menu-dark"
+                                        style="overflow-y: scroll;height: 200px;"
+                                        >
+                                        </ul>
+                                        <input id="sltInterlocuteur" type="text" class="form-control" aria-label="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Long. Lat.</span>
+                                        <input type="text" id="inptLong" aria-label="longitudde" class="form-control">
+                                        <input type="text" id="inptLat" aria-label="latitude" class="form-control">
+                                      </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Nom du lieu</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <section class="main-controls">
+                                    <canvas class="visualizer" height="60px"></canvas>
+                                    <div id="buttons">
+                                      <button class="record">Record</button>
+                                      <button class="stop">Stop</button>
+                                    </div>
+                                  </section>
+                            
+                                  <section class="sound-clips">
+                                  </section>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p style="padding-top: 6px;">Design by <a href="https://samszo.univ-paris8.fr/" class="text-white">Samuel
+                    Szoniecky</a>
+                <a target="_blank" href="https://www.univ-paris8.fr/EA-349-Laboratoire-Paragraphe">
+                    <img style="height: 40px;" src="assets/img/logo-paragraphe-blanc.svg"
+                        alt="Laboratoire Paragraphe" />
+                </a>
+                <a target="_blank" href="https://github.com/samszo/enquete">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa-brands fa-github fa-2xl"></i>
+                    </button>
+                </a>
+                Template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+                    href="https://twitter.com/mdo" class="text-white">@mdo</a>.
+            </p>
+        </footer>
+
+    </div>
+
+
+    <div id="loading-container">
+        <div class="loadingio-spinner-double-ring-4dols36ufwg" id="ws-loading">
+            <div class="ldio-6pd26u1x99x">
+                <div></div>
+                <div></div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js" ></script>
+
+</body>
+
+</html>

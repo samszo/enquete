@@ -1,0 +1,36 @@
+canvas {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+/* Make the clips use as much space as possible, and
+ * also show a scrollbar when there are too many clips to show
+ * in the available space */
+ .sound-clips {
+    flex: 1;
+    overflow: auto;
+  }
+  
+  section,
+  article {
+    display: block;
+  }
+  
+  .clip {
+    padding-bottom: 1rem;
+  }
+  
+  audio {
+    width: 100%;
+    display: block;
+    margin: 1rem auto 0.5rem;
+  }
+  
+  .clip p {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  
+  .clip button {
+    font-size: 1rem;
+    float: right;
+  }
